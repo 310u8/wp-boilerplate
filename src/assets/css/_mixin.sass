@@ -1,0 +1,35 @@
+@use "sass:math"
+@charset "utf-8"
+
+=mq($device)
+  @if $device == pc
+    @media only screen and (min-width: $breakpoint+1)
+      @content
+
+  @else if $device == sp
+    @media only screen and (max-width: $breakpoint)
+      @content
+
+=fontMargin($font-size: $font-size, $line-height: $line-height, $margin-bottom: 0, $margin-top: 0)
+  margin-top: floor($margin-top - (math.div(($font-size * $line-height - $font-size), 2)))
+  margin-bottom: floor($margin-bottom - (math.div(($font-size * $line-height - $font-size), 2)))
+  font-size: $font-size
+  line-height: $line-height
+
+=fontPadding($font-size: $font-size, $line-height: $line-height, $padding-bottom: 0, $padding-top: 0)
+  padding-top: floor($padding-top - (math.div(($font-size * $line-height - $font-size), 2)))
+  padding-bottom: floor($padding-bottom - (math.div(($font-size * $line-height - $font-size), 2)))
+  font-size: $font-size
+  line-height: $line-height
+
+=kerning($letter-spacing: 0)
+  letter-spacing: #{$letter-spacing}em
+  font-feature-settings: 'palt'
+
+=img($width: auto, $height: auto)
+  width: $width
+  height: $height
+
+  img
+    width: 100%
+    height: auto
